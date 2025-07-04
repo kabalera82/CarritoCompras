@@ -1,12 +1,17 @@
-# React + Vite
+# Carrito de Compras - GuitarLA 🎸
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este proyecto es una aplicación de carrito de compras para una tienda de guitarras llamada **GuitarLA**. Fue desarrollado utilizando **React** y **Vite** para ofrecer una experiencia rápida y moderna. La aplicación permite a los usuarios explorar una colección de guitarras, agregar productos al carrito, ajustar cantidades y realizar un seguimiento del total a pagar.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologías Utilizadas
 
-## Expanding the ESLint configuration
+- **React**: Biblioteca para construir interfaces de usuario.
+- **Vite**: Herramienta de desarrollo rápida para proyectos modernos.
+- **JavaScript (ES6+)**: Lenguaje principal utilizado en el desarrollo.
+- **CSS**: Para el diseño y estilos personalizados.
+- **LocalStorage**: Para persistir el estado del carrito entre sesiones.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 📂 Estructura del Proyecto
