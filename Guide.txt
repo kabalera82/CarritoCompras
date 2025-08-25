@@ -1,0 +1,99 @@
+### BackEnd ###
+    - Java 24
+    - Spring Boot 3.5.5
+    - Maven
+        - Dependencies:
+            o Spring Web
+            o Spring Data JPA
+            o Lombok
+            o MySQL Driver
+
+    - logback.xml (logging configuration):
+        https://logback.qos.ch/manual/index.html
+        https://docs.spring.io/spring-boot/docs/current/reference/html/features.html#features.logging
+        https://www.baeldung.com/logback
+        https://www.baeldung.com/spring-boot-logging
+
+---------------------------------------------------------------------------------------------
+
+### application.properties (Spring Boot configuration) ###
+
+    - Configure the following properties in src/main/resources/application.properties:
+
+        spring.application.name=demo
+
+        # MySQL connection
+        spring.datasource.url=jdbc:mysql://localhost:3306/MusicShop?createDatabaseIfNotExist=true
+        spring.datasource.username=root
+        spring.datasource.password=221182
+        spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+        # Hibernate settings
+        spring.jpa.hibernate.ddl-auto=update
+        spring.jpa.show-sql=true
+
+        # Server port (optional)
+        # server.port=8080
+
+---------------------------------------------------------------------------------------------
+
+### Create Entities with necessary annotations and Lombok and jakarta imports ###
+    - For each entity, create a class in the model package.
+    - Use the following imports and annotations:
+        import jakarta.persistence.Entity;
+        import jakarta.persistence.GeneratedValue;
+        import jakarta.persistence.GenerationType;
+        import jakarta.persistence.Id;
+        import lombok.AllArgsConstructor;
+        import lombok.Data;
+        import lombok.NoArgsConstructor;
+        import lombok.ToString;
+
+    - Example:
+        @Entity
+        @Data
+        @NoArgsConstructor
+        @AllArgsConstructor
+        @ToString
+        public class Guitar {
+            @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+            private Long id;
+            private String name;
+            private String imagen;
+            private String description;
+            private double price;
+        }
+
+---------------------------------------------------------------------------------------------
+
+### Create Repositories ###
+
+    - Create an interface for each entity in the repository package.
+    - The interface must extend JpaRepository<Entity, Long>.
+    - No implementation is needed; Spring Data JPA provides all basic CRUD operations automatically.
+
+    - Example:
+        public interface GuitarRepository extends JpaRepository<Guitar, Long> {}
+
+---------------------------------------------------------------------------------------------
+
+### Create Services ###
+
+- For each entity, create a service interface in the service package.
+- Define methods for listing, searching by ID, saving/updating, and deleting entities.
+- Implement the interface in a service class using the @Service annotation.
+- Inject the corresponding repository using @Autowired.
+- Delegate CRUD operations to the repository.
+
+---------------------------------------------------------------------------------------------
+
+### Create Controllers ###
+    
+
+    
+
+
+
+
+---------------------------------------------------------------------------------------------
