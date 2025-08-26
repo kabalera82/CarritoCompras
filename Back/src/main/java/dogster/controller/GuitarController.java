@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import dogster.exception.NotFoundException;
 import dogster.model.Guitar;
 import dogster.service.IGuitarService;
 
@@ -77,11 +78,11 @@ public class GuitarController {
      * @param idGuitar th Id of the guitar to retrieve
      * @return ResponseEntity containing the Guitar Object if found it else returns NotFoundException.
      */
-    @GetMapping("/guitars/{id}")
+    @GetMapping("/guitars/{idGuitar}")
     public ResponseEntity<Guitar> searchGuitarById(@PathVariable Long idGuitar) {
         Guitar guitar = guitarService.searchGuitarById(idGuitar);
         if (guitar == null) {
-            System.out.println("Aqui va control de errores");
+            throw new NotFoundException("Guitar not found with id: " + idGuitar);
         }
         return ResponseEntity.ok(guitar);
     }
@@ -89,16 +90,16 @@ public class GuitarController {
     // Update a guitar by Put Method ===================================================================================
     /**
      * Updates an existing Guitar entity.
-     * PUT /guitars/{id}
+     * PUT /guitars/{idGuitar}
      * @param idGuitar the Id of the guitar to update
-     * @param guitarDetails
-     * @return
+     * @param guitarDetails the Guitar object containing updated details 
+     * @return ResponseEntity containing the updated Guitar object if found it else returns NotFoundException.
      */
     @PutMapping("/guitars/{idGuitar}")
     public ResponseEntity<Guitar> updatedGuitar(@PathVariable Long idGuitar, @RequestBody Guitar guitarDetails) {
         Guitar guitar = guitarService.searchGuitarById(idGuitar);
         if (guitar == null) {
-            System.out.print("Control de errores");
+            throw new NotFoundException("Guitar not found with id: " + idGuitar);
         }
         guitar.setName(guitarDetails.getName());
         guitar.setImage(guitarDetails.getImage());
@@ -107,13 +108,18 @@ public class GuitarController {
         return ResponseEntity.ok(guitarDetails);
     }
 
-    //VAmos a REallizar un peticion de tipo DELETE
+    // Delete a guitar by Delete Method ===================================================================================
+    /**
+     * Deletes a guitar by its Id.
+     * DELETE /guitars/{idGuitar}
+     * @param idGuitar the Id of the guitar to delete
+     * @return ResponseEntity containing a map with a boolean indicating if the deletion was successful.
+     */
     @DeleteMapping("/guitars/{idGuitar}")
-    public ResponseEntity<Map<String, Boolean>>
-            deleteGuitar(@PathVariable Long idGuitar) {
+    public ResponseEntity<Map<String, Boolean>> deleteGuitar(@PathVariable Long idGuitar) {
         Guitar guitar = guitarService.searchGuitarById(idGuitar);
         if (guitar == null) {
-            System.out.println("Control de errores");
+            throw new NotFoundException("Guitar not found with id: " + idGuitar);
         }
         guitarService.deleteGuitar(guitar);
         //Json {"eliminado": "true"}
@@ -121,5 +127,4 @@ public class GuitarController {
         respuesta.put("eliminado", Boolean.TRUE);
         return ResponseEntity.ok(respuesta);
     }
-
 }

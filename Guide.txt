@@ -1,4 +1,10 @@
-### BackEnd ###
+########################################### Music Shop FullStack #########################################
+========================================================================================================
+################################################# BackEnd #############################################
+    
+### Project Setup ###
+    - Create a new Spring Boot project using Spring Initializr (https://start.spring.io/).
+    - Project Metadata:
     - Java 24
     - Spring Boot 3.5.5
     - Maven
@@ -14,7 +20,7 @@
         https://www.baeldung.com/logback
         https://www.baeldung.com/spring-boot-logging
 
----------------------------------------------------------------------------------------------
+========================================================================================================
 
 ### application.properties (Spring Boot configuration) ###
 
@@ -23,9 +29,9 @@
         spring.application.name=demo
 
         # MySQL connection
-        spring.datasource.url=jdbc:mysql://localhost:3306/MusicShop?createDatabaseIfNotExist=true
-        spring.datasource.username=root
-        spring.datasource.password=221182
+        spring.datasource.url=jdbc:mysql://localhost:3306/yourDatabase?createDatabaseIfNotExist=true
+        spring.datasource.username=yourUsername
+        spring.datasource.password=yourPassword
         spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
 
         # Hibernate settings
@@ -35,7 +41,9 @@
         # Server port (optional)
         # server.port=8080
 
----------------------------------------------------------------------------------------------
+========================================================================================================
+
+### Model ###
 
 ### Create Entities with necessary annotations and Lombok and jakarta imports ###
     - For each entity, create a class in the model package.
@@ -55,45 +63,92 @@
         @NoArgsConstructor
         @AllArgsConstructor
         @ToString
-        public class Guitar {
+        public class EntityName {
             @Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)
             private Long id;
-            private String name;
-            private String imagen;
-            private String description;
-            private double price;
+            // Add your entity fields here
         }
 
----------------------------------------------------------------------------------------------
+========================================================================================================
 
-### Create Repositories ###
+### Repositories ###
 
     - Create an interface for each entity in the repository package.
     - The interface must extend JpaRepository<Entity, Long>.
     - No implementation is needed; Spring Data JPA provides all basic CRUD operations automatically.
 
     - Example:
-        public interface GuitarRepository extends JpaRepository<Guitar, Long> {}
+        public interface EntityRepository extends JpaRepository<EntityName, Long> {}
 
----------------------------------------------------------------------------------------------
+========================================================================================================
 
-### Create Services ###
+### Services ###
 
-- For each entity, create a service interface in the service package.
-- Define methods for listing, searching by ID, saving/updating, and deleting entities.
-- Implement the interface in a service class using the @Service annotation.
-- Inject the corresponding repository using @Autowired.
-- Delegate CRUD operations to the repository.
+    - For each entity, create a service interface in the service package.
+    - Define methods for listing, searching by ID, saving/updating, and deleting entities.
+    - Implement the interface in a service class using the @Service annotation.
+    - Inject the corresponding repository using @Autowired.
+    - Delegate CRUD operations to the repository.
 
----------------------------------------------------------------------------------------------
+    - Example interface:
+        public interface IEntityService {
+            List<EntityName> listAll();
+            EntityName findById(Long id);
+            EntityName save(EntityName entity);
+            void delete(EntityName entity);
+        }
 
-### Create Controllers ###
-    
+    - Example implementation:
+        @Service
+        public class EntityService implements IEntityService {
+            @Autowired
+            private EntityRepository repository;
+            // Implement methods using repository
+        }
 
-    
+========================================================================================================
 
+### Controllers ###
 
+    - For each entity, create a controller class in the controller package.
+    - Annotate the class with @RestController and @RequestMapping("/api").
+    - Inject the service interface using @Autowired.
+    - Implement endpoints for CRUD operations:
 
+        - GET /entities: Retrieve a list of all entities.
+            Use this endpoint to fetch all records of the entity from the database.
+        - GET /entities/{id}: Retrieve a single entity by its unique identifier.
+            Use this endpoint to fetch the details of a specific entity by its ID.
+        - POST /entities: Create a new entity.
+            Use this endpoint to add a new entity to the database. The entity data is sent in the request body.
+        - PUT /entities/{id}: Update an existing entity by its unique identifier.
+            Use this endpoint to modify the data of an existing entity. The updated data is sent in the request body.
+        - DELETE /entities/{id}: Delete an entity by its unique identifier.
+            Use this endpoint to remove an entity from the database by its ID.
 
----------------------------------------------------------------------------------------------
+    - Use ResponseEntity for responses when appropriate.
+    - Use a logger (org.slf4j.Logger) for logging actions and debugging.
+    - Handle errors with custom exceptions (e.g., NotFoundException) for resources not found.
+
+========================================================================================================
+
+### Exception ###
+
+### Create Custom Exceptions ###
+
+    - Create a custom exception class in the exception package to handle cases where a requested resource is not found.
+    - Extend RuntimeException for unchecked exception behavior.
+    - Annotate the class with @ResponseStatus(HttpStatus.NOT_FOUND) so that when the exception is thrown in a controller, it automatically returns a 404 Not Found HTTP status.
+    - Use this exception in your controllers to signal that an entity with the given ID does not exist.
+
+Example:
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    public class NotFoundException extends RuntimeException {
+        public NotFoundException(String message) {
+            super(message);
+        }
+    }
+
+========================================================================================================
+========================================================================================================

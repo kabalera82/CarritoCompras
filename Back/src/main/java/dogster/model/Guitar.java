@@ -1,6 +1,5 @@
 package dogster.model;
 
-// Importing necessary libraries ==========================================================================================
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,11 +26,12 @@ import lombok.ToString;
  */
 
 // Annotations ===========================================================================================================
-@Entity                 // To create entity class 
-@Data                   // To generate getters & setters
-@NoArgsConstructor      // To generate constructor with no arguments
-@AllArgsConstructor     // To generate constructor with all arguments
-@ToString               // To generate toString method
+@Entity                                                 // To create entity class 
+@Data                                                   // To generate getters & setters
+@NoArgsConstructor                                      // To generate constructor with no arguments
+@AllArgsConstructor                                     // To generate constructor with all arguments
+@ToString                                               // To generate toString method
+//@JsonAutoDetect(fieldVisibility = Visibility.ANY)       // To visibility of all fields for JSON
 
 // Class Definition ======================================================================================================
 public class Guitar {    

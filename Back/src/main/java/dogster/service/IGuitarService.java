@@ -10,11 +10,15 @@ import dogster.model.Guitar;
  */
 public interface IGuitarService {
     
+    // Method to IMPLEMENT all Guitar Objects ===================================================
+
     /**
      * Retrieves a list of all Guitar objects
      * @return a list of Guitar entities
      */
     public List<Guitar> listAllGuitars();
+    
+    // Method to SEARCH guitars by ID ===========================================================
 
     /**
      * Searches for a Guitar by  its ID.
@@ -23,12 +27,16 @@ public interface IGuitarService {
      */
     public Guitar searchGuitarById(Long idGuitar);
 
+    // Method to SAVE or UPDATE Guitar =========================================================
+
     /**
      * Saves or updates a Guitar entity.
      * @param guitar the Guitar entity to be saved or updated
      * @return the saved or updated Guitar entity
      */
     public Guitar saveGuitar(Guitar guitar);
+
+    // Method to DELETE a Guitar ===============================================================
     
     /**
      * Deletes a Guitar entity.

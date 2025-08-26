@@ -1,17 +1,42 @@
-# Carrito de Compras - GuitarLA 🎸
 
-Este proyecto es una aplicación de carrito de compras para una tienda de guitarras llamada **GuitarLA**. Fue desarrollado utilizando **React** y **Vite** para ofrecer una experiencia rápida y moderna. La aplicación permite a los usuarios explorar una colección de guitarras, agregar productos al carrito, ajustar cantidades y realizar un seguimiento del total a pagar.
+### MusicShop Backend ###
 
----
+### BackEnd ###
 
-## 🚀 Tecnologías Utilizadas
+Backend REST API for the MusicShop project, built with Java 24 and Spring Boot 3.5.5.
 
-- **React**: Biblioteca para construir interfaces de usuario.
-- **Vite**: Herramienta de desarrollo rápida para proyectos modernos.
-- **JavaScript (ES6+)**: Lenguaje principal utilizado en el desarrollo.
-- **CSS**: Para el diseño y estilos personalizados.
-- **LocalStorage**: Para persistir el estado del carrito entre sesiones.
+========================================================================================================
 
----
+### Project Overview ###
 
-## 📂 Estructura del Proyecto
+This backend provides a RESTful API for managing entities (such as products, users, etc.) in a music shop context.  
+It is designed to be easily extensible and follows best practices for Spring Boot applications.
+
+========================================================================================================
+
+### Tech Stack ###
+
+- Java 24
+- Spring Boot 3.5.5
+- Maven
+- Spring Web
+- Spring Data JPA
+- Lombok
+- MySQL
+
+========================================================================================================
+
+### Project Structure ###
+
+- Main: MusicShop\Back\src\main\java\dogster
+- Model: MusicShop\Back\src\main\java\dogster\model
+- Repositories: MusicShop\Back\src\main\java\dogster\repositories
+- Services: MusicShop\Back\src\main\java\dogster\service
+- Controller: MusicShop\Back\src\main\java\dogster\controller
+- Exception: MusicShop\Back\src\main\java\dogster\exception
+- Resources: MusicShop\Back\src\main\resources
+    - application.properties
+    - logback-spring.xml
+- Test: MusicShop\Back\src\test\java\dogster
+
+========================================================================================================
