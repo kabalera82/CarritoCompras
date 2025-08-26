@@ -151,4 +151,15 @@ Example:
     }
 
 ========================================================================================================
+### Run Back App ###
+    - mvn spring-boot:run
+################################################# FrontEnd #############################################
 ========================================================================================================
+################################################# FullStack #############################################
+### Create a FullStack Application ###
+
+    - Check your backend is running on http://localhost:8080 (or your configured port).
+    - Configure CORS in your Spring Boot application if your frontend (@CrossOrigin(value = "http://localhost:3000"))
+    - Change your local data for a Api call
+    - Create a estate fata with useState([]) and delete db.js
+    - Use axios for API calls (GET, POST, PUT, DELETE)

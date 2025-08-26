@@ -24,14 +24,16 @@ import dogster.service.IGuitarService;
 
 /**
  * Rest controller for managing Guitar entities.
- * Provides endpoints fro CRUD operations on guitars.
+ * Provides endpoints for CRUD operations on guitars.
  * 
  * Base path: http://localhost:8080/MusicShop/
- * Allows cross-origin requests from React frontend at (http://localhost:3000).
+ * Allows cross-origin requests from React frontend at (http://localhost:3000) y Vite en (http://localhost:5173).
  */
-@RestController                                 //http://localhost:8080/MusicShop/ (aplication path or context path)
-@RequestMapping("MusicShop")                    //http://localhost:8080/MusicShop/
-@CrossOrigin(value = "http://localhost:3000")   //React port
+@RestController                                 // http://localhost:8080/MusicShop/ (application path)
+@RequestMapping("MusicShop")                    // http://localhost:8080/MusicShop/
+//@CrossOrigin(value = "http://localhost:3000") --  UNUSED ---  //React port Blocked to Allow both ports
+@CrossOrigin(origins = {"http://localhost:3000", "http://localhost:5173"}) // To allow all ports
+
 public class GuitarController {
 
     // Logger === Must be from package org.slf4j to import this class. =================================================
